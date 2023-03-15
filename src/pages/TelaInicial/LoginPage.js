@@ -1,15 +1,30 @@
 import axios from "axios"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { ThreeDots } from "react-loader-spinner"
 import { Link, useNavigate } from "react-router-dom"
 import logo from "../../assets/img/logo-completa.svg"
+import { UserContext } from "../../context/authUser"
 import { ContentInicial, FormInicial } from "./styleInicial"
+import { useEffect } from "react"
 export default function LoginPage() {
+    
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
-    const navigate = useNavigate()
 
+    const navigate = useNavigate()
+    const { user, setUser } = useContext(UserContext)
+    
+    useEffect(() => {
+        const userInfoSerializado = localStorage.getItem("user");
+        const userInfo = JSON.parse(userInfoSerializado)
+        if(userInfo) {
+            setUser(userInfo)
+            navigate("/hoje")
+        }
+    }, [])
+    
+    
     function entrar(e) {
         e.preventDefault()
         setLoading(true)
@@ -17,6 +32,9 @@ export default function LoginPage() {
         const body = { email, password }
         const promise = axios.post(urlPost, body)
         promise.then( (res) => {
+            const userInfo = res.data
+            const userInfoSerializado = JSON.stringify(userInfo)
+            localStorage.setItem("user", userInfoSerializado)
             navigate("/hoje")
         })
         promise.catch( (err) => {
@@ -26,6 +44,7 @@ export default function LoginPage() {
             setPassword("")
         })
     }
+    
     return (
         <ContentInicial>
             <img src={logo} alt="logo" />

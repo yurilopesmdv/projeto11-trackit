@@ -1,13 +1,15 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import CadastroPage from "./pages/TelaInicial/CadastroPage";
 import HabitosPage from "./pages/Habitos/HabitosPage";
 import HistoricoPage from "./pages/Habitos/HistoricoPage";
 import HojePage from "./pages/Habitos/HojePage";
 import LoginPage from "./pages/TelaInicial/LoginPage";
+import { useContext } from "react";
+import { UserContext } from "./context/authUser";
 
 function App() {
   return (
-    <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={ <LoginPage /> }/>
           <Route path="/cadastro" element={ <CadastroPage /> }/>

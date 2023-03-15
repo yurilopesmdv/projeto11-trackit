@@ -5,10 +5,11 @@ import HistoricoPage from "./pages/Habitos/HistoricoPage";
 import HojePage from "./pages/Habitos/HojePage";
 import LoginPage from "./pages/TelaInicial/LoginPage";
 import { useContext } from "react";
-import { UserContext } from "./context/authUser";
+import { ProgressProvider } from "./context/DayProgress";
 
 function App() {
   return (
+    <ProgressProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={ <LoginPage /> }/>
@@ -18,6 +19,8 @@ function App() {
           <Route path="/historico" element={ <HistoricoPage /> }/>
         </Routes>
     </BrowserRouter>
+    </ProgressProvider>
+      
   );
 }
 

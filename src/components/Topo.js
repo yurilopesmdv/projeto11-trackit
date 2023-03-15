@@ -1,7 +1,10 @@
+import { useContext } from "react"
 import styled from "styled-components"
+import { UserContext } from "../context/authUser"
 
 export default function Topo() {
-    const urlFoto = 'https://ichef.bbci.co.uk/news/640/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg'
+    const { user } = useContext(UserContext)
+    const urlFoto = user.image
     return (
         <Header>
             <h1>TrackIt</h1>
@@ -22,7 +25,9 @@ const Header = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     h1 {
         font-size: 39px;
-        color: #FFFFFF
+        color: #FFFFFF;
+        font-family: 'Playball', cursive;
+
     }
     img {
         width: 51px;

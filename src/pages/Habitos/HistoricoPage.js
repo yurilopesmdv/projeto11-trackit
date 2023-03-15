@@ -7,7 +7,10 @@ export default function HistoricoPage() {
         <ContentHistoricoPage>
             <Topo />
             <ContentHistorico>
-
+                <DivTitle>
+                    <h2>Histórico</h2>
+                    <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
+                </DivTitle>
             </ContentHistorico>
             <Menu />
         </ContentHistoricoPage>
@@ -24,4 +27,15 @@ const ContentHistorico = styled.div`
     height: 100%;
     margin: 70px 0;
     background-color: #F2F2F2;
+`
+const DivTitle = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px 15px;
+    p {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #666666;
+    }
 `

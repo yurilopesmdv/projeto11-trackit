@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import logo from "../../assets/img/logo-completa.svg"
 import { ContentInicial, FormInicial } from "./styleInicial"
+import { ThreeDots } from 'react-loader-spinner'
 
 export default function CadastroPage() {
     const [email, setEmail] = useState("")
@@ -19,7 +20,8 @@ export default function CadastroPage() {
         const body = { email, name, image, password }
         const promise = axios.post(urlPost, body)
         promise.then((res) => {
-            navigate("/")})
+            navigate("/")
+        })
         promise.catch((err) => {
             alert(err.response.data.message)
             setLoading(false)
@@ -29,11 +31,20 @@ export default function CadastroPage() {
         <ContentInicial>
             <img src={logo} alt="logo" />
             <FormInicial onSubmit={cadastrar}>
-                <input disabled={loading} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" value={email} required/>
-                <input disabled={loading} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="senha" value={password} required/>
-                <input disabled={loading} onChange={(e) => setName(e.target.value)} type="text" placeholder="nome" value={name} required/>
-                <input disabled={loading} onChange={(e) => setImage(e.target.value)} type="text" placeholder="foto" value={image} required/>
-                <button disabled={loading} >{loading ? 'carregando' : "Cadastrar"}</button>
+                <input disabled={loading} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" value={email} required />
+                <input disabled={loading} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="senha" value={password} required />
+                <input disabled={loading} onChange={(e) => setName(e.target.value)} type="text" placeholder="nome" value={name} required />
+                <input disabled={loading} onChange={(e) => setImage(e.target.value)} type="text" placeholder="foto" value={image} required />
+                <button disabled={loading} >{loading ? <ThreeDots
+                    height="15"
+                    width="60"
+                    radius="9"
+                    color="#FFFFFF"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                /> : "Cadastrar"}</button>
             </FormInicial>
             <Link to="/" >
                 <p>Já tem uma conta? Faça login!</p>

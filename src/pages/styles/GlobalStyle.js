@@ -5,10 +5,22 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Lexend Deca', sans-serif;
         font-weight: 400;
         box-sizing: border-box;
+        max-width: 375px;
     }
     p {
         color: #52B6FF;
         font-family: 'Lexend Deca', sans-serif;
+    }
+    h2 {
+        color: #126BA5;
+        font-size: 23px;
+        font-family: 'Lexend Deca', sans-serif;
+    }
+    h3 {
+        font-size: 20px;
+        color: #666666;
+        font-family: 'Lexend Deca', sans-serif;
+
     }
     button {
         background-color: #52B6FF;

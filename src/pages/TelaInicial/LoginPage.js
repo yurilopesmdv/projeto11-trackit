@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import { ThreeDots } from "react-loader-spinner"
 import { Link, useNavigate } from "react-router-dom"
 import logo from "../../assets/img/logo-completa.svg"
 import { ContentInicial, FormInicial } from "./styleInicial"
@@ -31,7 +32,16 @@ export default function LoginPage() {
             <FormInicial onSubmit={entrar}>
                 <input disabled={loading} onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="email" required />
                 <input disabled={loading} onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="senha" required />
-                <button disabled={loading}>{loading ? 'carregando' : 'Entrar'}</button>
+                <button disabled={loading}>{loading ? <ThreeDots
+                    height="15"
+                    width="60"
+                    radius="9"
+                    color="#FFFFFF"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle={{}}
+                    wrapperClassName=""
+                    visible={true}
+                /> : 'Entrar'}</button>
             </FormInicial>
             <Link to="/cadastro" >
                 <p>Não tem uma conta? Cadastre-se!</p>

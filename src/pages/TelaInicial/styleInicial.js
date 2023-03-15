@@ -36,6 +36,9 @@ export const FormInicial = styled.form`
     button {
         margin: 5px 0;
         font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     button:disabled{
         opacity: 0.7;

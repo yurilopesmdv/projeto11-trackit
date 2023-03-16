@@ -63,9 +63,6 @@ const ContentItem = styled.div`
         margin-bottom: 4px;
         span {
             color: ${props => {
-                if(props.done) {
-                    return "#8FC549"
-                }
                 if(props.currentSequence === 0) {
                     return "#666666"
                 }
@@ -83,6 +80,9 @@ const ContentItem = styled.div`
         margin-bottom: 4px;
         span {
             color: ${(props) => {
+                if(props.done) {
+                    return "#8FC549"
+                }
                 if(props.currentSequence === 0) {
                     return "#666666"
                 }

@@ -4,7 +4,6 @@ import HabitosPage from "./pages/Habitos/HabitosPage";
 import HistoricoPage from "./pages/Habitos/HistoricoPage";
 import HojePage from "./pages/Habitos/HojePage";
 import LoginPage from "./pages/TelaInicial/LoginPage";
-import { useContext } from "react";
 import { ProgressProvider } from "./context/DayProgress";
 
 function App() {

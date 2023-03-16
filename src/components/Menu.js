@@ -4,8 +4,10 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar"
 import { ProgressContext } from "../context/DayProgress"
 import { useContext } from "react"
 
+
 export default function Menu() {
     const {progress} = useContext(ProgressContext)
+
     return (
         <Footer >
             <Link to={"/habitos"} > Hábitos </Link>

@@ -1,21 +1,42 @@
+import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
 
-export default function DivAdd({ nomeHabito, setNomeHabito, setDivAdicionar }) {
+export default function DivAdd({ nomeHabito, setNomeHabito, setDivAdicionar, token, pegarHabitosApi }) {
     const [diasSelecionados, setDiasSelecionados] = useState([])
+    const [loading, setLoading] = useState(false)
     const diasDaSemana = ["D", "S", "T", "Q", "Q", "S", "S"]
 
     function salvarHabito() {
+        setLoading(true)
         const urlPost = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits'
         const body = {
             name: nomeHabito,
             days: diasSelecionados
         }
+        const config = {
+            headers: { Authorization: `Bearer ${token}`}
+        }
+        if(nomeHabito !== "" && diasSelecionados.length !== 0) {
+            const promise = axios.post(urlPost, body, config)
+            promise.then(res => {
+                setLoading(false)
+                setDivAdicionar(0)
+                pegarHabitosApi()
+            })
+            promise.catch(err => {
+                setLoading(false)
+                alert(err.response.data.message)
+            })
+        } else {
+            alert("Preencha os dados corretamente")
+            setLoading(false)
+        }
         
     }
     return (
         <Content>
-            <input onChange={(e) => setNomeHabito(e.target.value)}
+            <input disabled={loading} onChange={(e) => setNomeHabito(e.target.value)}
                 value={nomeHabito}
                 placeholder={"nome do hábito"}
             />
@@ -23,6 +44,7 @@ export default function DivAdd({ nomeHabito, setNomeHabito, setDivAdicionar }) {
                 {diasDaSemana.map((dia, index) => {
                     return (
                         <BotaoDia diasSelecionados={diasSelecionados}
+                            disabled={loading}
                             index={index}
                             key={index}
                             onClick={() => {
@@ -40,7 +62,6 @@ export default function DivAdd({ nomeHabito, setNomeHabito, setDivAdicionar }) {
             </DivDias>
             <DivSalvar>
                 <p onClick={() => {
-                    setDiasSelecionados([])
                     setDivAdicionar(0)
                 }}>
                     Cancelar
@@ -59,6 +80,7 @@ const Content = styled.div`
     display: flex;
     flex-direction: column;
     padding: 16px;
+    margin-bottom: 10px;
 `
 const DivDias = styled.div`
     display: flex;

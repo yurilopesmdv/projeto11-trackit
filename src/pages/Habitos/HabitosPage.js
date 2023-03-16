@@ -1,13 +1,16 @@
 import Topo from "../../components/Topo"
 import Menu from "../../components/Menu"
 import styled from "styled-components"
-import { useState } from "react"
-import DivAdd from "../../components/DivAdd"
+import { useContext, useEffect, useState } from "react"
+import { UserContext } from "../../context/authUser"
+import DivHabitos from "../../components/DivHabitos"
 
 export default function HabitosPage() {
     const [divAdicionar, setDivAdicionar] = useState(0)
     const [nomeHabito, setNomeHabito] = useState("")
-    if (divAdicionar === 0) {
+    const {user} = useContext(UserContext)
+    const token = user.token
+
         return (
             <ContentHabitosPage>
                 <Topo />
@@ -16,32 +19,12 @@ export default function HabitosPage() {
                         <h2>Meus hábitos</h2>
                         <button onClick={() => setDivAdicionar(1)} >+</button>
                     </DivTitle>
-                    <DivHabitos>
-                        <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
-                    </DivHabitos>
+                    <DivHabitos user={user} token={token} nomeHabito={nomeHabito} setNomeHabito={setNomeHabito} setDivAdicionar={setDivAdicionar} divAdicionar={divAdicionar}/>
                 </ContentHabitos>
                 <Menu />
             </ContentHabitosPage>
         )
     }
-    return (
-        <ContentHabitosPage>
-            <Topo />
-            <ContentHabitos>
-                <DivTitle>
-                    <h2>Meus hábitos</h2>
-                    <button>+</button>
-                </DivTitle>
-                <DivHabitos>
-                    <DivAdd nomeHabito={nomeHabito} setNomeHabito={setNomeHabito} setDivAdicionar={setDivAdicionar}/>
-                    <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
-                </DivHabitos>
-            </ContentHabitos>
-            <Menu />
-        </ContentHabitosPage>
-    )
-
-}
 const ContentHabitosPage = styled.div`
     display: flex;
     flex-direction: column;
@@ -65,13 +48,4 @@ const DivTitle = styled.div`
         font-size: 26px;
     }
 `
-const DivHabitos = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 0 10px 30px 10px;
-    p {
-        margin-top: 13px;
-        color: #666666;
-        font-size: 18px;
-    }
-`
+

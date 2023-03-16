@@ -1,49 +1,65 @@
+import axios from "axios"
+import dayjs from "dayjs"
+import { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
+import Item from "../../components/Item"
 import Menu from "../../components/Menu"
 import Topo from "../../components/Topo"
+import { UserContext } from "../../context/authUser"
+import { ProgressContext } from "../../context/DayProgress"
 
 export default function HojePage() {
+    const diaNome = [ "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+    const mes = [ "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    const diaHoje = dayjs()
+    const [habHoje, setHabHoje] = useState([])
+    
+    const { user } = useContext(UserContext)
+    const { progress, setProgress } = useContext(ProgressContext)
+    const token = user.token
+    useEffect(() => {
+        pegarHabitosHoje()
+    }, [])
+    function pegarHabitosHoje() {
+        const urlGet = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today'
+        const config = {
+            headers: { Authorization: `Bearer ${token}` }
+        }
+        const promise = axios.get(urlGet, config)
+        promise.then(res => {
+            setHabHoje(res.data)
+            let habFeitos = 0
+            res.data.forEach((element) => {
+                if(element.done){
+                    habFeitos = habFeitos + 1
+                }
+            })
+            if(habFeitos > 0) {
+                const progresso = (habFeitos / res.data.length) * 100
+                setProgress(progresso)
+            }
+            if(habFeitos === 0) {
+                const progresso = (habFeitos / res.data.length) * 100
+                setProgress(progresso)
+            }
+        })
+
+        promise.catch(err => console.log(err.response.data))
+    }
     return (
         <ContentHojePage>
             <Topo />
             <ContentHoje>
-                <DivTitle>
-                    <h2>Segunda, 17/05</h2>
-                    <p>Nenhum hábito concluído ainda</p>
+                <DivTitle progress={progress}>
+                    <h2>{diaNome[diaHoje.$W]}, {diaHoje.date()}/{mes[diaHoje.month()]}</h2>
+                    <p>{progress > 0 ? `${progress}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}</p>
                 </DivTitle>
                 <DivHabitos>
-                    <Item>
-                        <div>
-                            <h3>Ler muito</h3>
-                            <h4>Sequência atual: 3 dias</h4>
-                            <h4>Seu recorde: 5 dias</h4>
-                        </div>
-                        <DivCheck>
-                            <ion-icon name="checkmark-outline"></ion-icon>
-                        </DivCheck>
-                    </Item>
-
-                    <Item>
-                        <div>
-                            <h3>Ler muito</h3>
-                            <h4>Sequência atual: 3 dias</h4>
-                            <h4>Seu recorde: 5 dias</h4>
-                        </div>
-                        <DivCheck>
-                            <ion-icon name="checkmark-outline"></ion-icon>
-                        </DivCheck>
-                    </Item>
-
-                    <Item>
-                        <div>
-                            <h3>Ler muito</h3>
-                            <h4>Sequência atual: 3 dias</h4>
-                            <h4>Seu recorde: 5 dias</h4>
-                        </div>
-                        <DivCheck>
-                            <ion-icon name="checkmark-outline"></ion-icon>
-                        </DivCheck>
-                    </Item>
+                    {habHoje.map((habito) => {
+                        return (
+                            <Item pegarHabitosHoje={pegarHabitosHoje} token={token} key={habito.id} habito={habito}/>
+                        )
+                    })}
                 </DivHabitos>
             </ContentHoje>
             <Menu />
@@ -67,7 +83,7 @@ const DivTitle = styled.div`
     flex-direction: column;
     margin: 30px 10px;
     p {
-        color: #BABABA;
+        color: ${(props) => props.progress > 0 ? "#8FC549" : "#BABABA"};
         font-size: 18px;
         margin-top: 8px;
     }
@@ -77,34 +93,4 @@ const DivHabitos = styled.div`
     flex-direction: column;
     margin: 0 10px 30px 10px;
     gap: 10px;
-`
-const Item = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 340px;
-    height: 94px;
-    background: #FFFFFF;
-    border-radius: 5px;
-    padding: 15px;
-    h3 {
-        margin-bottom: 10px;
-    }
-    h4 {
-        color: #666666;
-        font-size: 13px;
-    }
-`
-const DivCheck = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 69px;
-    height: 69px;
-    background: #EBEBEB;
-    border: 1px solid #E7E7E7;
-    border-radius: 5px;
-    ion-icon {
-        color: #FFFFFF;
-        font-size: 50px;
-    }
 `

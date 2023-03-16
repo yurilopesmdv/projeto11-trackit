@@ -10,7 +10,6 @@ export default function DivHabitos({ token, nomeHabito, setNomeHabito, setDivAdi
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     }
-    console.log(habitosApi)
     useEffect(() => {
         pegarHabitosApi()
     }, [])

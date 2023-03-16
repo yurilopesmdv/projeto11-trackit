@@ -63,12 +63,13 @@ export default function DivAdd({ nomeHabito, setNomeHabito, setDivAdicionar, tok
             </DivDias>
             <DivSalvar>
                 <button  data-test="habit-create-cancel-btn"
+                    disabled={loading}
                     onClick={() => {
                     setDivAdicionar(0)
                 }}>
                     Cancelar
                 </button>
-                <button data-test="habit-create-save-btn" onClick={salvarHabito}>Salvar</button>
+                <button disabled={loading} data-test="habit-create-save-btn" onClick={salvarHabito}>Salvar</button>
             </DivSalvar>
         </Content>
     )

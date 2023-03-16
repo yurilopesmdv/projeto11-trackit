@@ -18,13 +18,16 @@ export default function LoginPage() {
     useEffect(() => {
         const userInfoSerializado = localStorage.getItem("user");
         const userInfo = JSON.parse(userInfoSerializado)
+        
         if(userInfo) {
             setUser(userInfo)
-            navigate("/hoje")
+            navHoje()
         }
     }, [])
     
-    
+    function navHoje() {
+        navigate("/hoje")
+    }
     function entrar(e) {
         e.preventDefault()
         setLoading(true)
@@ -35,7 +38,8 @@ export default function LoginPage() {
             const userInfo = res.data
             const userInfoSerializado = JSON.stringify(userInfo)
             localStorage.setItem("user", userInfoSerializado)
-            navigate("/hoje")
+            setUser(res.data)
+            navHoje()
         })
         promise.catch( (err) => {
             alert(err.response.data.message)

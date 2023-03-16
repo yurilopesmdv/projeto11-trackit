@@ -33,7 +33,7 @@ export default function Item({habito, token, pegarHabitosHoje}) {
         }
     }
     return (
-        <ContentItem data-test="today-habit-container" feitoAgora={feitoAgora} currentSequence={currentSequence} highestSequence={highestSequence}>
+        <ContentItem data-test="today-habit-container" done={done} feitoAgora={feitoAgora} currentSequence={currentSequence} highestSequence={highestSequence}>
             <div>
                 <h3 data-test="today-habit-name">{name}</h3>
                 <h5 data-test="today-habit-sequence">Sequência atual: <span>{currentSequence} {currentSequence === 1 ? "dia" : "dias"}</span></h5>
@@ -63,6 +63,9 @@ const ContentItem = styled.div`
         margin-bottom: 4px;
         span {
             color: ${props => {
+                if(props.done) {
+                    return "#8FC549"
+                }
                 if(props.currentSequence === 0) {
                     return "#666666"
                 }

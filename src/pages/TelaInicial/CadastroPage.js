@@ -31,11 +31,12 @@ export default function CadastroPage() {
         <ContentInicial>
             <img src={logo} alt="logo" />
             <FormInicial onSubmit={cadastrar}>
-                <input disabled={loading} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" value={email} required />
-                <input disabled={loading} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="senha" value={password} required />
-                <input disabled={loading} onChange={(e) => setName(e.target.value)} type="text" placeholder="nome" value={name} required />
-                <input disabled={loading} onChange={(e) => setImage(e.target.value)} type="text" placeholder="foto" value={image} required />
-                <button disabled={loading} >{loading ? <ThreeDots
+                <input data-test="email-input" disabled={loading} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email" value={email} required />
+                <input data-test="password-input" disabled={loading} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="senha" value={password} required />
+                <input data-test="user-name-input" disabled={loading} onChange={(e) => setName(e.target.value)} type="text" placeholder="nome" value={name} required />
+                <input data-test="user-image-input" disabled={loading} onChange={(e) => setImage(e.target.value)} type="text" placeholder="foto" value={image} required />
+                <button data-test="signup-btn"
+                    disabled={loading} >{loading ? <ThreeDots
                     height="15"
                     width="60"
                     radius="9"
@@ -46,7 +47,7 @@ export default function CadastroPage() {
                     visible={true}
                 /> : "Cadastrar"}</button>
             </FormInicial>
-            <Link to="/" >
+            <Link data-test="login-link" to="/" >
                 <p>Já tem uma conta? Faça login!</p>
             </Link>
         </ContentInicial>

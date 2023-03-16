@@ -33,13 +33,13 @@ export default function Item({habito, token, pegarHabitosHoje}) {
         }
     }
     return (
-        <ContentItem feitoAgora={feitoAgora} currentSequence={currentSequence} highestSequence={highestSequence}>
+        <ContentItem data-test="today-habit-container" feitoAgora={feitoAgora} currentSequence={currentSequence} highestSequence={highestSequence}>
             <div>
-                <h3>{name}</h3>
-                <h5>Sequência atual: <span>{currentSequence} {currentSequence === 1 ? "dia" : "dias"}</span></h5>
-                <h4>Seu recorde: <span>{highestSequence} {highestSequence === 1 ? "dia" : "dias"}</span></h4>
+                <h3 data-test="today-habit-name">{name}</h3>
+                <h5 data-test="today-habit-sequence">Sequência atual: <span>{currentSequence} {currentSequence === 1 ? "dia" : "dias"}</span></h5>
+                <h4 data-test="today-habit-record">Seu recorde: <span>{highestSequence} {highestSequence === 1 ? "dia" : "dias"}</span></h4>
             </div>
-            <DivCheck done={done}>
+            <DivCheck data-test="today-habit-check-btn" done={done}>
                 <ion-icon onClick={check} name="checkmark-outline"></ion-icon>
             </DivCheck>
         </ContentItem>

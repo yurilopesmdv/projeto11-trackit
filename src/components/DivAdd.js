@@ -35,15 +35,16 @@ export default function DivAdd({ nomeHabito, setNomeHabito, setDivAdicionar, tok
         
     }
     return (
-        <Content>
-            <input disabled={loading} onChange={(e) => setNomeHabito(e.target.value)}
+        <Content data-test="habit-create-container">
+            <input data-test="habit-name-input" disabled={loading} onChange={(e) => setNomeHabito(e.target.value)}
                 value={nomeHabito}
                 placeholder={"nome do hábito"}
             />
             <DivDias >
                 {diasDaSemana.map((dia, index) => {
                     return (
-                        <BotaoDia diasSelecionados={diasSelecionados}
+                        <BotaoDia  data-test="habit-day"
+                            diasSelecionados={diasSelecionados}
                             disabled={loading}
                             index={index}
                             key={index}
@@ -61,12 +62,13 @@ export default function DivAdd({ nomeHabito, setNomeHabito, setDivAdicionar, tok
                 })}
             </DivDias>
             <DivSalvar>
-                <p onClick={() => {
+                <button  data-test="habit-create-cancel-btn"
+                    onClick={() => {
                     setDivAdicionar(0)
                 }}>
                     Cancelar
-                </p>
-                <button onClick={salvarHabito}>Salvar</button>
+                </button>
+                <button data-test="habit-create-save-btn" onClick={salvarHabito}>Salvar</button>
             </DivSalvar>
         </Content>
     )
@@ -102,15 +104,18 @@ const DivSalvar = styled.div`
     align-items: center;
     gap: 30px;
     margin-top: 20px;
-    p{
+    button:first-child{
         margin-bottom: 8px;
         color: #52B6FF;
-        font-size: 16px
+        font-size: 16px;
+        border: none;
+        background: transparent;
     }
-    button {
+    button:last-child {
         width: 84px;
         height: 35px;
-
+        font-size: 16px;
+        margin-bottom: 8px;
     }
 
 `

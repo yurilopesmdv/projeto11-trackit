@@ -51,8 +51,8 @@ export default function HojePage() {
             <Topo />
             <ContentHoje>
                 <DivTitle progress={progress}>
-                    <h2>{diaNome[diaHoje.$W]}, {diaHoje.date()}/{mes[diaHoje.month()]}</h2>
-                    <p>{progress > 0 ? `${progress}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}</p>
+                    <h2 data-test="today">{diaNome[diaHoje.$W]}, {diaHoje.date()}/{mes[diaHoje.month()]}</h2>
+                    <p data-test="today-counter">{progress > 0 ? `${progress}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}</p>
                 </DivTitle>
                 <DivHabitos>
                     {habHoje.map((habito) => {

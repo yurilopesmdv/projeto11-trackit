@@ -17,7 +17,7 @@ export default function HabitosPage() {
                 <ContentHabitos>
                     <DivTitle>
                         <h2>Meus hábitos</h2>
-                        <button onClick={() => setDivAdicionar(1)} >+</button>
+                        <button data-test="habit-create-btn" onClick={() => setDivAdicionar(1)} >+</button>
                     </DivTitle>
                     <DivHabitos user={user} token={token} nomeHabito={nomeHabito} setNomeHabito={setNomeHabito} setDivAdicionar={setDivAdicionar} divAdicionar={divAdicionar}/>
                 </ContentHabitos>

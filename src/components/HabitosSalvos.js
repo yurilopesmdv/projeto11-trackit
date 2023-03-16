@@ -16,16 +16,17 @@ export default function HabitosSalvos({ hab, pegarHabitosApi, config }) {
         }
     }
     return (
-        <Content>
+        <Content data-test="habit-container">
             <DivTitle>
-                <h4>{hab.name}</h4>
-                <ion-icon onClick={() => deletarHab(hab.id)} name="trash-outline"></ion-icon>
+                <h4 data-test="habit-name">{hab.name}</h4>
+                <ion-icon data-test="habit-delete-btn" onClick={() => deletarHab(hab.id)} name="trash-outline"></ion-icon>
             </DivTitle>
 
             <DivDias>
                 {diasDaSemana.map((dia, index) => {
                     return (
-                        <BotaoDia disabled={true}
+                        <BotaoDia  data-test="habit-day"
+                            disabled={true}
                             key={index}
                             apiDays={apiDays}
                             index={index}

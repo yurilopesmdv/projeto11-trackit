@@ -49,9 +49,10 @@ export default function LoginPage() {
         <ContentInicial>
             <img src={logo} alt="logo" />
             <FormInicial onSubmit={entrar}>
-                <input disabled={loading} onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="email" required />
-                <input disabled={loading} onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="senha" required />
-                <button disabled={loading}>{loading ? <ThreeDots
+                <input data-test="email-input" disabled={loading} onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="email" required />
+                <input data-test="password-input" disabled={loading} onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="senha" required />
+                <button data-test="login-btn"
+                    disabled={loading}>{loading ? <ThreeDots
                     height="15"
                     width="60"
                     radius="9"
@@ -62,7 +63,7 @@ export default function LoginPage() {
                     visible={true}
                 /> : 'Entrar'}</button>
             </FormInicial>
-            <Link to="/cadastro" >
+            <Link data-test="signup-link" to="/cadastro" >
                 <p>Não tem uma conta? Cadastre-se!</p>
             </Link>
         </ContentInicial>

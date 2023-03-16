@@ -9,9 +9,9 @@ export default function Menu() {
     const {progress} = useContext(ProgressContext)
 
     return (
-        <Footer >
-            <Link to={"/habitos"} > Hábitos </Link>
-            <Link to={"/hoje"} >
+        <Footer data-test="menu">
+            <Link data-test="habit-link" to={"/habitos"} > Hábitos </Link>
+            <Link data-test="today-link" to={"/hoje"} >
                 <div>
                     <CircularProgressbar
                         value={progress}
@@ -27,7 +27,7 @@ export default function Menu() {
                     />
                 </div>
             </Link>
-            <Link to={"/historico"} >Histórico</Link>
+            <Link data-test="history-link" to={"/historico"} >Histórico</Link>
         </Footer>
     )
 }

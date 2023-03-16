@@ -88,8 +88,6 @@ const ContentItem = styled.div`
                 }
                 if(props.highestSequence === props.currentSequence || props.feitoAgora) {
                     return "#8FC549" 
-                } else {
-                    return "#666666"
                 }
             }};
         }

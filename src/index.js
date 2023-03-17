@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import GlobalStyle from './styles/GlobalStyle';
 import ResetStyle from './styles/ResetStyle';
+import GlobalStyle from './styles/GlobalStyle';
 import { UserProvider } from './context/authUser';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

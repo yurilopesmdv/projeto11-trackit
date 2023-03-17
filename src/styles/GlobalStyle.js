@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Lexend Deca', sans-serif;
         font-weight: 400;
         box-sizing: border-box;
-        max-width: 375px;
+        
     }
     p {
         color: #52B6FF;

@@ -5,7 +5,6 @@ import { UserContext } from "../context/authUser"
 export default function Topo() {
     const { user } = useContext(UserContext)
     const urlFoto = user.image
-    console.log(urlFoto)
     return (
         <Header data-test="header">
             <h1>TrackIt</h1>

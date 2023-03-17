@@ -74,6 +74,7 @@ export default function DivHabitos({ token, nomeHabito, setNomeHabito, setDivAdi
 
 
 const ContentHabitos = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin: 0 10px 30px 10px;

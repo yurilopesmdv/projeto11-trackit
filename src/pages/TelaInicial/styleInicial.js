@@ -2,7 +2,6 @@ import styled from "styled-components"
 
 export const ContentInicial = styled.div`
     width: 100%;
-    max-width: 375px;
     background-color: #fff;
     height: 100vh;
     display: flex;

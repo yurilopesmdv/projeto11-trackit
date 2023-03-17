@@ -40,7 +40,7 @@ export default function HabitosSalvos({ hab, pegarHabitosApi, config }) {
     )
 }
 const Content = styled.div`
-    width: 340px;
+    width: 90%;
     height: 91px;
     background: #FFFFFF;
     border-radius: 5px;
